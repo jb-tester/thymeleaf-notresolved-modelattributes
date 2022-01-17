@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Start Page</title>
+</head>
+<h1> plain:</h1>
+<body>
+<th:block th:each="element : ${somelist}">
+    <p th:text="${element}"/>
+</th:block>
+
+<h1>elvis:</h1>
+
+<p th:text="${someflag?: 'dont know'}"/>
+<p th:text="${!someflag?: 'hmm...'}"/>
+
+<p th:text="${someflag?'yes':'nope'}"/>
+<p th:text="${(someitem.prop1 == somestr)?'ok':'fail'}"/>
+<p th:text="${someitem.prop2?:'foo'}"/>
+
+<h1>if and unless:</h1>
+<div th:if="${someflag}">
+    !!!
+</div>
+<div th:unless="${!someflag || someint2 > someint1}">
+    ???
+</div>
+<div th:switch="${somelist.size()}">
+    <span th:case="${someint}">case1</span>
+
+    <div th:case="*">
+        <div th:text="${somestr}"/>
+    </div>
+</div>
+
+<h1>indexes:</h1>
+
+<p th:text="${somelist[someindex]}"/>
+
+
+<p th:text="${resolved_list[someindex]}"/>
+
+<p th:text="${somelist[1]}"/>
+<div th:with="indexvar = 0">
+    <p th:text="${somelist[indexvar]}"/>
+</div>
+
+</body>
+</html>
